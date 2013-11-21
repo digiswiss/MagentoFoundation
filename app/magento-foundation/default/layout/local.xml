@@ -47,10 +47,50 @@
 			<action method="addItem"><type>skin_js</type><name>js/foundation/jquery.placeholder.js</name><params/></action>
 			<action method="addItem"><type>skin_js</type><name>js/foundation/app.js</name><params/></action>
 			
-			<action method="addItem"><type>skin_js</type><name>js/jquery.isotope.min.js</name><params/></action>
-            <action method="addItem"><type>skin_js</type><name>js/jquery/mobile-menu.js</name><params/></action>
 			
-			<action method="addCss"><stylesheet>css/mobile-menu.css</stylesheet></action>
+			<action method="addItem"><type>skin_js</type><name>js/jquery.isotope.min.js</name><params/></action>
+		      	<action method="addItem"><type>skin_js</type><name>js/jquery/mobile-menu.js</name><params/></action>
+					                                                                                   
+			<action method="addCss"><stylesheet>css/mobile-menu.css</stylesheet></action>           
+		      	<action method="addCss"><stylesheet>css/foundation.css</stylesheet></action>
+		      	<action method="addCss"><stylesheet>css/foundation-icons.css</stylesheet></action>
+		                                                                                          
+		      	<action method="removeItem"><type>skin_css</type><name>css/print.css</name></action>
 		</reference>
+		<!-- Menu mobile --> 
+		<reference name="header">
+		      <remove name="welcome"/>
+		      <block type="catalog/navigation" name="catalog_footernav" template="catalog/navigation/mobile-menu.phtml" before="-" />
+		</reference>
+                  
+		<reference name="footer">
+			<block type="page/switch" name="store_language" as="store_language" before="store_switcher" template="page/switch/languages.phtml"/> 
+    		</reference>
 	</default>
+  <print>
+    <reference name="head"> 
+	<action method="removeItem"><type>skin_css</type><name>css/print.css</name></action>
+	<action method="addCss"><stylesheet>css/foundation.css</stylesheet></action>
+    </reference>
+  </print>
+  <!--checkout_onepage_index>
+    <reference name="checkout.progress.wrapper"> 
+      <remove name="checkout.progress"/>
+      <block type="checkout/onepage_progress" name="checkout.progress" before="-" template="checkout/onepage/progress.phtml"/>
+    </reference>
+    <reference name="checkout.onepage.payment"> 
+      <remove name="checkout.payment.methods"/> 
+      <block type="checkout/onepage_payment_methods" name="checkout.payment.methods" as="methods" template="checkout/onepage/payment/methods.phtml">
+        <action method="setMethodFormTemplate"><method>purchaseorder</method><template>payment/form/purchaseorder.phtml</template></action>
+      </block>
+    </reference>
+  </checkout_onepage_index>
+  <checkout_onepage_progress>
+      <remove name="root"/>  
+      <block type="checkout/onepage_progress" name="root" output="toHtml" template="checkout/onepage/progress.phtml">
+          <block type="checkout/onepage_payment_info" name="payment_info">
+              <action method="setInfoTemplate"><method></method><template></template></action>
+          </block>
+      </block>
+  </checkout_onepage_progress-->
 </layout>
